@@ -1,4 +1,4 @@
-React-SpringBoot-App
+PetApp 
 
 This is a full-stack web application built using React and Spring Boot.
 
