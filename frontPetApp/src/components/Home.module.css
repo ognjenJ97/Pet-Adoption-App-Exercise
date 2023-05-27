@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 60rem; /* Dodajte maksimalnu širinu */
+  margin: 0 auto; /* Centriranje kontejnera */
+}
+
+.columnWithBackground {
+  position: relative;
+}
+
+.columnWithBackground::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("picture/SL-100420-36140-05.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.container > * {
+  margin-bottom: 1.5rem; /* Dodavanje margine na dno svakog direktnog deteta */
+}
+
+.container > *:last-child {
+  margin-bottom: 0; /* Uklanjanje margine za poslednje direktno dete */
+}
+
+.footerRow {
+  background-color: #dedcdc;
+  text-align: center;
+  width: 100%;
+  height: 2rem;
+}
+
+.footerText {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  color: rgb(51, 51, 51);
+  font-size: 0.7rem;
+}

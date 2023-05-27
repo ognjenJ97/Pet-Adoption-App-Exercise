@@ -9,47 +9,46 @@ import Login from './authorization/Auth';
 import { logout } from './services/auth';
 import Ljubimci from './components/ljubimci/Ljubimci';
 import AddLjubimac from './components/ljubimci/AddLjubimac';
+import classes from './index.module.css'
 
 const App = () => {
 
-
     if(window.localStorage.getItem("jwt")){
     return (
-        <>
-            <Router>
-                <Navbar expand bg="dark" variant="dark">
-                    <Navbar.Brand as={Link} to="/">
-                        TEST
-                    </Navbar.Brand>
-                    <Nav>
-                    <Nav.Link as={Link} to="/ljubimci" style={{marginRight: "12px", color: 'white' }}>
-                        Ljubimci
-                    </Nav.Link>
-                   
-                    <Button onClick = {logout}>Log out</Button>
-                    </Nav>
-            </Navbar>
-            <Container style={{paddingTop:"10px"}}>
+      <>
+        <Router>
+          <Navbar expand bg="dark" variant="dark" className={classes.container}>
+            <Nav className={classes.nav}>
+              <Nav.Link as={Link} to="/">
+                Home page
+              </Nav.Link>
+              <Nav.Link as={Link} to="/pets">
+                Pets
+              </Nav.Link>
+              <Button onClick={logout}>Log out</Button>
+            </Nav>
+          </Navbar>
+          <Container style={{ paddingTop: "10px" }}>
             <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="*" element={<NotFound />} />
-                    <Route path="/login" element={<Login/>} />
-                    <Route path="*" element={<Navigate replace to="/login" />} />
-                    <Route path="/ljubimci" element={<Ljubimci />} />
-                    <Route path="/ljubimci/add" element={<AddLjubimac />} />
-                </Routes>
-            </Container>
-            </Router>
-        </>
+              <Route path="/" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<Navigate replace to="/login" />} />
+              <Route path="/pets" element={<Ljubimci />} />
+              <Route path="/pets/add" element={<AddLjubimac />} />
+            </Routes>
+          </Container>
+        </Router>
+      </>
     )}else{
         return (
             <>
             <Router>
                 <Navbar expand bg="dark" variant="dark">
-                    <Navbar.Brand as={Link} to="/">
-                        TEST
-                    </Navbar.Brand>
-                    <Nav>
+                <Nav>
+                    <Nav.Link as={Link} to="/">
+                        Home page
+                    </Nav.Link>
                     <Nav.Link as={Link} to="/login">
                         Login
                     </Nav.Link>
