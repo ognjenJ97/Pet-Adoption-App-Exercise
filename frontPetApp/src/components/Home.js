@@ -8,28 +8,38 @@ class Home extends React.Component {
     return (
       <Col className={`${classes.container} ${classes.columnWithBackground}`}>
         <Row>
-          <h1>Welcome to the Animal Adoption Website!</h1>
+          <div className={classes.box}>
+            <h1>Welcome to the Animal Adoption Website!</h1>
+          </div>
         </Row>
         <Row>
-          <p>Find your new furry friend and provide them with a loving home.</p>
-          <p>
-            At Pet Paradise, we believe that every animal deserves a safe and
-            loving home. Our mission is to connect you with your perfect
-            companion and make the adoption process a joyful and rewarding
-            experience.
-          </p>
+          <div className={classes.box}>
+            <p>
+              Find your new furry friend and provide them with a loving home.
+            </p>
+            <p>
+              At Pet Paradise, we believe that every animal deserves a safe and
+              loving home. <br /> Our mission is to connect you with your
+              perfect companion and make the adoption process a joyful and
+              rewarding experience.
+            </p>
+          </div>
         </Row>
         <Row>
-          <p>Contact Information:</p>
-          <p>Email: info@pethaven.com</p>
-          <p>Phone: +1 (123) 456-7890</p>
-          <p>Address: 123 Pet Street, Cityville, Country</p>
+          <div className={classes.box}>
+            <p>Contact Information:</p>
+            <p>Email: info@pethaven.com</p>
+            <p>Phone: +1 (123) 456-7890</p>
+            <p>Address: 123 Pet Street, Cityville, Country</p>
+          </div>
         </Row>
         <Row>
-          {window.localStorage.getItem("role") === "ROLE_KORISNIK" &&
-            "ROLE_ADMIN" && <Link to="/pets">See all our pets</Link>}
-          {window.localStorage.getItem("role") == !"ROLE_KORISNIK" &&
-            "ROLE_ADMIN" && <Link to="/pets">Log in to see out pets!</Link>}
+          {window.localStorage.getItem("role") === "ROLE_KORISNIK" ||
+          window.localStorage.getItem("role") === "ROLE_ADMIN" ? (
+            <Link to="/pets">See all our pets</Link>
+          ) : (
+            <Link to="/login">Log in to see our pets!</Link>
+          )}
         </Row>
         <Row>
           <iframe

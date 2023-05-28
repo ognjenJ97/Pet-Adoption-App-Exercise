@@ -3,6 +3,8 @@ import { Row, Col, Button, Table, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import TestAxios from "../../apis/TestAxios";
 import LjubimacRow from "./LjubimacRow";
+import store from "../../store";
+import { petsActions } from "../../store/pets";
 
 const Ljubimci = () => {
 
@@ -18,6 +20,14 @@ const Ljubimci = () => {
       const [ljubimci, setLjubimci] = useState([]);
       const [kategorije, setKategorije] = useState([]);
       var navigate = useNavigate();
+
+      // Dispečovanje akcije
+      store.dispatch(petsActions.fetchPets({ params: {/* parametri */} }));
+
+      // Pretplata na promene stanja
+      store.subscribe(() => {
+        console.log('Ažurirano stanje:', store.getState().pets);
+      });
 
       const getLjubimci = (newPageNo) => {
         const conf = {

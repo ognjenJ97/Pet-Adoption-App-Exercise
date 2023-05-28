@@ -47,3 +47,10 @@
   color: rgb(51, 51, 51);
   font-size: 0.7rem;
 }
+
+.box {
+  background-color: #fff2ff;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  padding: 0.5rem;
+}

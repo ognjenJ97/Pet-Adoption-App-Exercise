@@ -9,7 +9,11 @@ import Login from './authorization/Auth';
 import { logout } from './services/auth';
 import Ljubimci from './components/ljubimci/Ljubimci';
 import AddLjubimac from './components/ljubimci/AddLjubimac';
-import classes from './index.module.css'
+import classes from './index.module.css';
+import { Provider } from 'react-redux';
+import store from './store';
+import Pets from './components/pets/Pets';
+
 
 const App = () => {
 
@@ -36,6 +40,7 @@ const App = () => {
               <Route path="*" element={<Navigate replace to="/login" />} />
               <Route path="/pets" element={<Ljubimci />} />
               <Route path="/pets/add" element={<AddLjubimac />} />
+              <Route path="/allPets" element={<Pets />} />
             </Routes>
           </Container>
         </Router>
@@ -44,8 +49,8 @@ const App = () => {
         return (
             <>
             <Router>
-                <Navbar expand bg="dark" variant="dark">
-                <Nav>
+                <Navbar expand bg="dark" variant="dark" className={classes.container}>
+                <Nav className={classes.nav}>
                     <Nav.Link as={Link} to="/">
                         Home page
                     </Nav.Link>
@@ -74,5 +79,7 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
 root.render(
-    <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
