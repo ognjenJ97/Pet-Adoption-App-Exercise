@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategory } from "../../store/category";
+import { fetchCategory } from "../../../store/category";
 import GenderSelection from "./GenderSelection";
 import CategorySelector from "./CategorySelector";
 import DescriptionSelector from "./DescriptionSelector";

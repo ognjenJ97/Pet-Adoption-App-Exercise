@@ -13,7 +13,7 @@ const initialPets = {
 //fetching data
 export const fetchPets = createAsyncThunk(
     'ljubimci/fetchPets',
-    async (search, { dispatch }) => {
+    async ({ search, newPageNo }, { dispatch }) => {
       try {
 
         console.log("params u fetchu" + JSON.stringify(search));
@@ -22,6 +22,7 @@ export const fetchPets = createAsyncThunk(
             kategorijaId: search.categorySearch,
             pol: search.genderSearch,
             opis: search.descSearch,
+            pageNo: newPageNo
           },
         };
 
@@ -29,7 +30,8 @@ export const fetchPets = createAsyncThunk(
         const totalPages = response.headers['total-pages'];
         return{
             pets: response.data,
-            totalPages
+            totalPages,
+            pageNo: newPageNo
         }
       } catch (error) {
         return isRejectedWithValue (error.response.data);
@@ -60,6 +62,11 @@ const petsSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             });
+            builder.addMatcher(
+              (action) => action.type === fetchPets.fulfilled.type,
+              (state, action) => {
+              state.pageNo = action.payload.pageNo;
+              })
     }
 })
 

@@ -19,7 +19,7 @@ const GenderSelection = ({setSearch}) => {
       <Form.Select name="genderSearch" value={selectedGender} onChange={handleGenderChange}>
         <option value="">Choose gender</option>
         <option value="muski">Men</option>
-        <option value="zanski">Female</option>
+        <option value="zenski">Female</option>
       </Form.Select>
     </Form.Group>
   );

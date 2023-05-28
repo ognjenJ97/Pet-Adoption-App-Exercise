@@ -1,0 +1,17 @@
+.row {
+  margin-top: 1rem;
+}
+
+.leftAlign {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.rightAlign {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rightAlign > *:first-child {
+  margin-right: 0.2rem;
+}

@@ -1,8 +1,9 @@
-import { Table } from "react-bootstrap";
+import { Table, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPets } from "../../store/pets";
 import RowPet from "./RowPet";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import PageNo from "./PageNo";
 
 const PetsTable = (props) => {
 
@@ -10,12 +11,21 @@ const PetsTable = (props) => {
     const pets = useSelector((state) => state.pets.pets);
     const loading = useSelector((state) => state.pets.loading);
     const error = useSelector((state) => state.pets.error);
+    const [pageNo, setPageNo] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
 
     console.log('Search props:', props.search);
-    
+
     useEffect(() => {
-      dispatch(fetchPets(props.search));
-    }, [dispatch, props.search]);
+      dispatch(fetchPets({ search: props.search, newPageNo: pageNo }))
+        .then((response) => {
+          setTotalPages(response.payload.totalPages); // Postavite broj ukupnih stranica
+        });
+    }, [dispatch, props.search, pageNo]);
+
+    const handlePageChange = (newPageNo) => {
+      setPageNo(newPageNo);
+    };
 
     if (loading) {
       return <div>Loading...</div>;
@@ -36,6 +46,9 @@ const PetsTable = (props) => {
     }
 
     return (
+      <>
+      <PageNo pageNo={pageNo} totalPages={totalPages} onPageChange={handlePageChange}/>
+      <Row>
       <Table id="pets-table">
         <thead>
           <tr>
@@ -52,6 +65,8 @@ const PetsTable = (props) => {
         </thead>
         <tbody>{renderPet()}</tbody>
       </Table>
+      </Row>
+      </>
     );
 }
 
