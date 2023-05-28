@@ -4,16 +4,18 @@ import { fetchPets } from "../../store/pets";
 import RowPet from "./RowPet";
 import { useEffect } from "react";
 
-const PetsTable = () => {
+const PetsTable = (props) => {
 
     const dispatch = useDispatch();
     const pets = useSelector((state) => state.pets.pets);
     const loading = useSelector((state) => state.pets.loading);
     const error = useSelector((state) => state.pets.error);
 
+    console.log('Search props:', props.search);
+    
     useEffect(() => {
-      dispatch(fetchPets());
-    }, [dispatch]);
+      dispatch(fetchPets(props.search));
+    }, [dispatch, props.search]);
 
     if (loading) {
       return <div>Loading...</div>;

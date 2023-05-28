@@ -13,9 +13,19 @@ const initialPets = {
 //fetching data
 export const fetchPets = createAsyncThunk(
     'ljubimci/fetchPets',
-    async (params) => {
+    async (search, { dispatch }) => {
       try {
-        const response = await TestAxios.get('/ljubimci', { params });
+
+        console.log("params u fetchu" + JSON.stringify(search));
+        const conf = {
+          params: {
+            kategorijaId: search.categorySearch,
+            pol: search.genderSearch,
+            opis: search.descSearch,
+          },
+        };
+
+        const response = await TestAxios.get('/ljubimci', conf);
         const totalPages = response.headers['total-pages'];
         return{
             pets: response.data,
