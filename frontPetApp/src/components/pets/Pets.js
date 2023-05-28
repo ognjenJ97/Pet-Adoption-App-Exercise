@@ -2,6 +2,7 @@ import { Col, Row } from "react-bootstrap";
 import PetsTable from "./PetsTable";
 import Search from "./search/Search";
 import { useState } from "react";
+import classes from './Pets.module.css';
 
 
 const Pets = () => {
@@ -13,10 +14,11 @@ const Pets = () => {
       });
 
     return (
-        <Col>
-            <Row><h1>All our pets</h1></Row>
-            <Row> <Search setSearch={setSearch}/> </Row>
-            <Row> <PetsTable search={search}/> </Row>
+        <Col className={`${classes.container} ${classes.columnWithBackground}`}>
+            <Col className={classes.secondCol}>
+                <Row className={classes.smallContainer}> <Search setSearch={setSearch}/> </Row>
+                <Row className={`${classes.smallContainer} ${classes.smallContainerCentered}`}> <PetsTable search={search}/> </Row>
+            </Col>
         </Col>
     )
 }

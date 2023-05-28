@@ -1,0 +1,50 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60rem;
+  height: 100vh;
+  padding-top: 1.5rem;
+}
+
+.columnWithBackground {
+  position: relative;
+}
+
+.columnWithBackground::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../picture/SL-100420-36140-05.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.secondCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50rem;
+}
+
+.smallContainer {
+  background-color: #fef2fc;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 1rem;
+}
+
+.smallContainerCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

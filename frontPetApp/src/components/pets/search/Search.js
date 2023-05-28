@@ -5,6 +5,7 @@ import GenderSelection from "./GenderSelection";
 import CategorySelector from "./CategorySelector";
 import DescriptionSelector from "./DescriptionSelector";
 import { Row, Col, Button } from "react-bootstrap";
+import classes from './Search.module.css';
 
 const Search = (props) => {
 
@@ -30,8 +31,8 @@ const Search = (props) => {
     };
    
     return (
-      <>
-        <Row>
+      <Row>
+        <Row className={classes.searchRow}>
           <Col>
             <DescriptionSelector setSearch={setSearch}/>
           </Col>
@@ -41,11 +42,11 @@ const Search = (props) => {
           <Col>
             <CategorySelector category={category} setSearch={setSearch}/>
           </Col>
+          <Col className={classes.button}>
+            <Button onClick={handleSearch}>Search</Button>
+          </Col>
         </Row>
-        <Row>
-          <Button onClick={handleSearch}>Search</Button>
-        </Row>
-      </>
+      </Row>
     );
     
 
