@@ -26,7 +26,7 @@ Installation
 Please note: For steps 4 and 5, you will need to follow the instructions provided on the respective websites to properly install Maven and Apache Tomcat on your machine.
 
 Features - This application allows users to:
-1. Login
+1. Login (To login like customer username: tamara, password: tamara) (To login like admin: username miroslav, password: miroslav)
 2. Add, view, and edit pets
 3. Search for pets by category, gender, and description
 4. Adopt pets
@@ -43,6 +43,8 @@ Technologies - This application uses the following technologies:
         -Bootstrap 
 
         -Axios 
+        
+        -Redux (Redux toolkit)
 
 2. Backend
 
