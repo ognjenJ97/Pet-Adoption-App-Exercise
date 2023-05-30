@@ -21,7 +21,7 @@ const PetsPage = (props) => {
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />
-        <PetsTable search={props.search} onPageChange={handlePageChange} />
+        <PetsTable search={props.search} />
       </>
     );
   };

@@ -8,7 +8,7 @@ const PetsTable = (props) => {
     <Row>
       <Table id="pets-table">
         <TableHeader />
-        <TableBody search={props.search} onPageChange={props.onPageChange}/>
+        <TableBody search={props.search}/>
       </Table>
     </Row>
   );

@@ -16,11 +16,11 @@ const TableBody = (props) => {
 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <tbody><tr><td>Loading...;</td></tr></tbody>
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <tbody><tr><td>Error: {error}</td></tr></tbody>;
   }
 
   const renderPet = () => {

@@ -7,8 +7,28 @@ const initialPets = {
     loading: false,
     error: null,
     totalPages: 0,
-    pageNo: 0
+    pageNo: 0,
 };
+
+//init empty search
+const empty_search = {
+  categorySearch: '',
+  genderSearch: '',
+  descSearch: ''
+};
+
+//delete pet
+export const deletePet = createAsyncThunk(
+  'pet/deletePet',
+  async (petId, {dispatch}) => {
+    try {
+      await TestAxios.delete(`/ljubimci/${petId}`);
+      dispatch(fetchPets({ search: empty_search, newPageNo: 0 }));
+      alert('Pet was deleted successfully!');
+    } catch (error) {
+      return isRejectedWithValue(error.response.data);
+  }
+})
 
 //fetching data
 export const fetchPets = createAsyncThunk(
@@ -61,6 +81,17 @@ const petsSlice = createSlice({
             .addCase(fetchPets.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
+            })
+            .addCase(deletePet.pending, (state) => {
+              state.loading = true;
+              state.error = null;
+            })
+            .addCase(deletePet.fulfilled, (state, action) => {
+              state.loading = false;
+            })
+            .addCase(deletePet.rejected, (state, action) => {
+              state.loading = false;
+              state.error = action.error.message;
             });
             builder.addMatcher(
               (action) => action.type === fetchPets.fulfilled.type,
@@ -70,6 +101,6 @@ const petsSlice = createSlice({
     }
 })
 
-export const petsActions = {fetchPets};
+export const petsActions = {fetchPets, deletePet};
 
 export default petsSlice.reducer;

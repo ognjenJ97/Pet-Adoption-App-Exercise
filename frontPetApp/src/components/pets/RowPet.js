@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import PetDelete from "./PetDelete";
 
 
 const RowPet = (props) => {
@@ -22,7 +23,7 @@ const RowPet = (props) => {
           <td>{props.pet.tezina}</td>
           <td>{props.pet.opis}</td>
           <td>{props.pet.kategorijaNaziv}</td>
-          <td></td>
+          <td>{window.localStorage.getItem("role") === "ROLE_ADMIN" && <PetDelete petId={petId}/>}</td>
         </tr>
       );
 

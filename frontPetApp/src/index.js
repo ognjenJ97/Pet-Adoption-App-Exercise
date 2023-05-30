@@ -29,6 +29,9 @@ const App = () => {
               <Nav.Link as={Link} to="/pets">
                 Pets
               </Nav.Link>
+              <Nav.Link as={Link} to="/allPets">
+                Pets(old)
+              </Nav.Link>
               <Button onClick={logout}>Log out</Button>
             </Nav>
           </Navbar>
@@ -38,9 +41,9 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<Navigate replace to="/login" />} />
-              <Route path="/pets" element={<Ljubimci />} />
+              <Route path="/allPets" element={<Ljubimci />} />
               <Route path="/pets/add" element={<AddLjubimac />} />
-              <Route path="/allPets" element={<Pets />} />
+              <Route path="/pets" element={<Pets />} />
             </Routes>
           </Container>
         </Router>
