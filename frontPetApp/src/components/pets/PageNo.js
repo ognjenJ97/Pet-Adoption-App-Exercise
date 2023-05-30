@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import classes from './PageNo.module.css';
 
-const PageNo = ({ pageNo, totalPages, onPageChange }) => {
+const PageNo = React.memo(({ pageNo, totalPages, onPageChange }) => {
   const handlePrevPage = () => {
     if (pageNo > 0) {
       onPageChange(pageNo - 1);
@@ -26,6 +26,6 @@ const PageNo = ({ pageNo, totalPages, onPageChange }) => {
       </Col>
     </Row>
   );
-};
+});
 
 export default PageNo;
