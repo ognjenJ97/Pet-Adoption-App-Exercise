@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { deletePet } from "../../store/pets";
+import { deletePet } from "../../../store/pets";
 
 const PetDelete = (props) => {
 

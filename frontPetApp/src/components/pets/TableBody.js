@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPets } from "../../store/pets";
-import RowPet from "./RowPet";
+import RowPet from "./petRow/RowPet";
 import { useEffect } from "react";
 
 const TableBody = (props) => {
@@ -25,7 +25,9 @@ const TableBody = (props) => {
 
   const renderPet = () => {
     return pets.map((pet) => {
-      return <RowPet key={pet.id} pet={pet} />;
+      return (<>
+      <RowPet key={pet.id} pet={pet} />
+      </>);
     });
   };
 

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, isRejectedWithValue  } from "@reduxjs/toolkit";
 import TestAxios from "../apis/TestAxios";
+import moment from "moment/moment";
 
 //initial state
 const initialPets = {
@@ -16,6 +17,45 @@ const empty_search = {
   genderSearch: '',
   descSearch: ''
 };
+
+//vaccination
+export const vaccination = createAsyncThunk(
+  'pet/vaccination',
+  async (id, { dispatch }) => {
+    try {
+      await TestAxios.post(`/ljubimci/${id}/promena`);
+      dispatch(fetchPets({ search: empty_search, newPageNo: 0 }));
+      setTimeout(() => {
+        alert('You have successfully vaccinated your pet!');
+      }, 50);
+    } catch (error) {
+      return isRejectedWithValue(error.response.data);
+    }
+  }
+)
+
+//adopt a pet 
+export const adoption = createAsyncThunk(
+  'pet/adoption',
+  async (id, { dispatch }) => {
+    try {
+      const newDate = moment().format("YYYY-MM-DD HH:mm");
+
+      var params = {
+        datumUdomljavanja: newDate,
+        ljubimacId: id,
+      }
+
+      await TestAxios.post('/udomljavanja', params);
+      dispatch(fetchPets({ search: empty_search, newPageNo: 0 }));
+      setTimeout(() => {
+        alert('You have successfully adopt your new pet!');
+      }, 500);
+    } catch (error) {
+      throw new Error('adopt error.');
+    }
+  }
+)
 
 //add new pet
 export const addPet = createAsyncThunk(
@@ -48,7 +88,9 @@ export const deletePet = createAsyncThunk(
     try {
       await TestAxios.delete(`/ljubimci/${petId}`);
       dispatch(fetchPets({ search: empty_search, newPageNo: 0 }));
-      alert('Pet was deleted successfully!');
+      setTimeout(() => {
+        alert('Pet was deleted successfully!');
+      }, 50);
     } catch (error) {
       return isRejectedWithValue(error.response.data);
   }
@@ -127,6 +169,28 @@ const petsSlice = createSlice({
             .addCase(addPet.rejected, (state, action) => {
               state.loading = false;
               state.error = action.error.message;
+            })
+            .addCase(adoption.pending, (state) => {
+              state.loading = true;
+              state.error = null;
+            })
+            .addCase(adoption.fulfilled, (state) => {
+              state.error = false;
+            })
+            .addCase(adoption.rejected, (state, action) => {
+              state.loading = false;
+              state.error = action.error.message;
+            })
+            .addCase(vaccination.pending, (state) => {
+              state.loading = true;
+              state.error = null;
+            })
+            .addCase(vaccination.fulfilled, (state) => {
+              state.error = false;
+            })
+            .addCase(vaccination.rejected, (state, action) => {
+              state.loading = false;
+              state.error = action.error.message;
             });
             builder.addMatcher(
               (action) => action.type === fetchPets.fulfilled.type,
@@ -136,6 +200,6 @@ const petsSlice = createSlice({
     }
 })
 
-export const petsActions = {fetchPets, deletePet};
+export const petsActions = {fetchPets, deletePet, addPet, adoption, vaccination};
 
 export default petsSlice.reducer;

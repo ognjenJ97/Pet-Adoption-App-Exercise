@@ -7,8 +7,6 @@ import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './authorization/Auth';
 import { logout } from './services/auth';
-import Ljubimci from './components/ljubimci/Ljubimci';
-import AddLjubimac from './components/ljubimci/AddLjubimac';
 import classes from './index.module.css';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -30,9 +28,6 @@ const App = () => {
               <Nav.Link as={Link} to="/pets">
                 Pets
               </Nav.Link>
-              <Nav.Link as={Link} to="/allPets">
-                Pets(old)
-              </Nav.Link>
               <Button onClick={logout}>Log out</Button>
             </Nav>
           </Navbar>
@@ -42,7 +37,6 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<Navigate replace to="/login" />} />
-              <Route path="/allPets" element={<Ljubimci />} />
               <Route path="/pets/add" element={<AddPet />} />
               <Route path="/pets" element={<Pets />} />
             </Routes>
