@@ -13,6 +13,7 @@ import classes from './index.module.css';
 import { Provider } from 'react-redux';
 import store from './store';
 import Pets from './components/pets/Pets';
+import AddPet from './components/pets/AddPet';
 
 
 const App = () => {
@@ -42,7 +43,7 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<Navigate replace to="/login" />} />
               <Route path="/allPets" element={<Ljubimci />} />
-              <Route path="/pets/add" element={<AddLjubimac />} />
+              <Route path="/pets/add" element={<AddPet />} />
               <Route path="/pets" element={<Pets />} />
             </Routes>
           </Container>

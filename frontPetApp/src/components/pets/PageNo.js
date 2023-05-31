@@ -1,8 +1,13 @@
 import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import classes from './PageNo.module.css';
+import { useNavigate } from "react-router-dom";
 
 const PageNo = React.memo(({ pageNo, totalPages, onPageChange }) => {
+
+
+  const navigate = useNavigate();
+
   const handlePrevPage = () => {
     if (pageNo > 0) {
       onPageChange(pageNo - 1);
@@ -15,10 +20,14 @@ const PageNo = React.memo(({ pageNo, totalPages, onPageChange }) => {
     }
   };
 
+  const goToAdd = () => {
+    navigate("/pets/add");
+  };
+
   return (
     <Row className={classes.row}>
       <Col className={classes.leftAlign}>
-        <Button>Add new pet</Button>
+        <Button onClick={() => goToAdd()}>Add new pet</Button>
       </Col>
       <Col className={classes.rightAlign}>
         <Button disabled={pageNo === 0} onClick={handlePrevPage}>Prev</Button>

@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 60rem; /* Dodajte maksimalnu širinu */
+  margin: 0 auto; /* Centriranje kontejnera */
+}
+
+.columnWithBackground {
+  position: relative;
+}
+
+.columnWithBackground::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../picture/SL-100420-36140-05.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.smallContainer {
+  background-color: #fff2ff;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 30rem;
+}
+
+.label {
+  background-color: #fff2ff;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 35rem;
+}
+
+.button {
+  width: 10%;
+  margin: 0.5rem;
+}

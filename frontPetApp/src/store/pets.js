@@ -17,6 +17,30 @@ const empty_search = {
   descSearch: ''
 };
 
+//add new pet
+export const addPet = createAsyncThunk(
+  'pet/addPet',
+  async (newPet, { dispatch }) => {
+    try {
+
+      var params = {
+        ime: newPet.name,
+        starost: newPet.age,
+        pol: newPet.gender,
+        tezina: newPet.weight,
+        opis: newPet.description,
+        kategorijaId: newPet.categoryId
+      };
+
+      await TestAxios.post('/ljubimci', params);
+      alert('Pet was added successfully!');
+      dispatch(fetchPets({ search: empty_search, newPageNo: 0 }));
+    } catch (error) {
+      return isRejectedWithValue(error.response.data);
+    }
+  }
+);
+
 //delete pet
 export const deletePet = createAsyncThunk(
   'pet/deletePet',
@@ -90,6 +114,17 @@ const petsSlice = createSlice({
               state.loading = false;
             })
             .addCase(deletePet.rejected, (state, action) => {
+              state.loading = false;
+              state.error = action.error.message;
+            })
+            .addCase(addPet.pending, (state) => {
+              state.loading = true;
+              state.error = null;
+            })
+            .addCase(addPet.fulfilled, (state, action) => {
+              state.loading = false;
+            })
+            .addCase(addPet.rejected, (state, action) => {
               state.loading = false;
               state.error = action.error.message;
             });
