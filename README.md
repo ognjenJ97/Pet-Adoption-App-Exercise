@@ -1,6 +1,6 @@
 # PetApp 
 
-This is a full-stack web application built using React and Spring Boot.
+This is a full-stack web application built using React and Spring Boot. I made this app for my FTN Informatika course final test.
 
 
 ## Getting Started
